@@ -28,6 +28,8 @@
       --glass: rgba(255,255,255,0.06);
       --glass-strong: rgba(255,255,255,0.09);
       --glow: rgba(91,140,255,0.18);
+      --deep-overlay-1: rgba(5,7,26,0.52);
+      --deep-overlay-2: rgba(5,7,26,0.62);
 
       /* Signal colors */
       --electric:#5B8CFF;
@@ -171,6 +173,13 @@
       border-color: rgba(255,255,255,0.16);
       box-shadow: 0 12px 45px rgba(0,0,0,0.20);
     }
+    #differentiation.section-soft,
+    #proof.section-soft{
+      background:
+        radial-gradient(800px 500px at 15% 20%, rgba(91,140,255,0.08), transparent 60%),
+        radial-gradient(700px 450px at 85% 80%, rgba(61,220,151,0.06), transparent 60%),
+        linear-gradient(180deg, rgba(5,7,26,0.24), rgba(5,7,26,0.46));
+    }
     .section-soft .cta-box{
       border-color: rgba(255,255,255,0.18);
       background:
@@ -226,6 +235,29 @@
     p, li{ color: var(--muted); line-height: 1.75; font-size: 1.04rem; }
 
     .hero{ position: relative; padding: 96px 0 70px; border-top: none; overflow: hidden; }
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, var(--deep-overlay-1), var(--deep-overlay-2));
+      pointer-events:none;
+      z-index: 0;
+    }
+    .hero .container{ position: relative; z-index: 1; }
+    .hero .bg-video-wrap{
+      position:absolute; inset:0; z-index:0;
+    }
+    .hero .bg-video-wrap video{
+      width:100%; height:100%; object-fit: cover;
+      opacity: 0.25;
+      filter: saturate(0.95) contrast(1.05);
+      transform: scale(1.03);
+    }
+    .hero .bg-video-wrap::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(5,7,26,0.45), rgba(5,7,26,0.60));
+    }
+    .hero .container{ position: relative; z-index: 1; }
     .hero-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 34px; align-items: center; }
     .hero-copy{ display:grid; gap: 18px; z-index: 2; }
     .hero-sub{ max-width: 58ch; color: rgba(199,206,217,0.88); }
@@ -512,56 +544,93 @@
       .nav-links{ display:none; }
     }
 
-    /* ===== Capabilities full background video (CRISP) ===== */
-    #capabilities {
+    /* ===== Capabilities background video ===== */
+    #capabilities{
       position: relative;
       overflow: hidden;
       background: none !important;
     }
-
-    #capabilities .bg-video-wrap {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
+    #capabilities .bg-video-wrap{
+      position:absolute; inset:0; z-index:0;
     }
-
-    #capabilities .bg-video-wrap video {
-      image-rendering: auto;
-      will-change: transform;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-
-      /* Key settings for clarity */
-      opacity: 0.45;
-      filter: none;
+    #capabilities .bg-video-wrap video{
+      width:100%; height:100%; object-fit: cover;
+      opacity: 0.28;
+      filter: saturate(0.95) contrast(1.05);
       transform: scale(1.03);
     }
-    #capabilities .bg-fallback{
+    #capabilities .bg-video-wrap::after{
+      content:"";
       position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit: cover;
-      opacity: 0.18;
-      filter: saturate(0.9) contrast(1.05);
+      background: linear-gradient(180deg, var(--deep-overlay-1), var(--deep-overlay-2));
     }
+    #capabilities .container{ position: relative; z-index: 1; }
 
-    /* Light, clean overlay */
-    #capabilities .bg-video-wrap::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(5,7,26,0.40),
-        rgba(5,7,26,0.48)
-      );
-    }
-
-    /* Content above video */
-    #capabilities .container {
+    /* ===== Contact background video ===== */
+    #contact{
       position: relative;
-      z-index: 2;
+      overflow: hidden;
+      background: none !important;
     }
+    #contact .bg-video-wrap{
+      position:absolute; inset:0; z-index:0;
+    }
+    #contact .bg-video-wrap video{
+      width:100%; height:100%; object-fit: cover;
+      opacity: 0.24;
+      filter: saturate(0.95) contrast(1.05);
+      transform: scale(1.03);
+    }
+    #contact .bg-video-wrap::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, var(--deep-overlay-1), var(--deep-overlay-2));
+    }
+    #contact .container{ position: relative; z-index: 1; }
+
+    /* ===== Bottleneck scan background video ===== */
+    #scan{
+      position: relative;
+      overflow: hidden;
+      background: none !important;
+    }
+    #scan .bg-video-wrap{
+      position:absolute; inset:0; z-index:0;
+    }
+    #scan .bg-video-wrap video{
+      width:100%; height:100%; object-fit: cover;
+      opacity: 0.24;
+      filter: saturate(0.95) contrast(1.05);
+      transform: scale(1.03);
+    }
+    #scan .bg-video-wrap::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, var(--deep-overlay-1), var(--deep-overlay-2));
+    }
+    #scan .container{ position: relative; z-index: 1; }
+
+    /* ===== Diagnostic visuals background video ===== */
+    #platform{
+      position: relative;
+      overflow: hidden;
+      background: none !important;
+    }
+    #platform .bg-video-wrap{
+      position:absolute; inset:0; z-index:0;
+    }
+    #platform .bg-video-wrap video{
+      width:100%; height:100%; object-fit: cover;
+      opacity: 0.24;
+      filter: saturate(0.95) contrast(1.05);
+      transform: scale(1.03);
+    }
+    #platform .bg-video-wrap::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, var(--deep-overlay-1), var(--deep-overlay-2));
+    }
+    #platform .container{ position: relative; z-index: 1; }
 
       .trust-note {
     margin-top: 32px;
@@ -641,6 +710,11 @@
 
   <main id="top">
     <section class="hero">
+      <div class="bg-video-wrap" aria-hidden="true">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="video5.mp4" type="video/mp4">
+        </video>
+      </div>
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="eyebrow"><span class="dot"></span> ITSM Optimization • Process Intelligence</div>
@@ -675,9 +749,6 @@
         </div>
 
         <div class="hero-visual" aria-label="Process intelligence dashboard preview">
-          <video class="bg-video" autoplay muted loop playsinline preload="metadata">
-            <source src="data%20technology%20network.mp4" type="video/mp4">
-          </video>
 
           <div class="visual-inner">
             <div class="visual-top">
@@ -713,7 +784,7 @@
                   <div class="kpi"><strong>+14%</strong><span>throughput</span></div>
                 </div>
                 <div class="fine" style="margin-top:12px; color: rgba(199,206,217,0.75); font-size:0.88rem;">
-  Illustrative diagnostic outputs based on historical event data. Actual results vary by workflow and data quality.
+  Note: Illustrative diagnostic outputs based on historical event data. Actual results vary by workflow and data quality.
 </div>
 
               </div>
@@ -742,12 +813,9 @@
     </section>
 
 <section id="capabilities">
-
-  <!-- Background video replaces image -->
   <div class="bg-video-wrap" aria-hidden="true">
-    <img class="bg-fallback" src="ALKHAI.png" alt="" />
-    <video muted loop playsinline preload="none" poster="ALKHAI.png">
-      <source data-src="data%20technology%20network.mp4" type="video/mp4" />
+    <video autoplay muted loop playsinline preload="metadata">
+      <source src="video4.mp4" type="video/mp4" />
     </video>
   </div>
 
@@ -794,6 +862,11 @@
     </section>
 
     <section id="platform" class="section-soft">
+      <div class="bg-video-wrap" aria-hidden="true">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="video1.mp4" type="video/mp4" />
+        </video>
+      </div>
       <div class="container">
         <div class="section-head">
           <div>
@@ -857,6 +930,11 @@
     </section>
 
     <section id="scan" class="section-soft">
+      <div class="bg-video-wrap" aria-hidden="true">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="video3.mp4" type="video/mp4" />
+        </video>
+      </div>
       <div class="container">
         <div class="section-head">
           <div>
@@ -995,7 +1073,7 @@
   </div>
 </section>
 
-    <section class="section-soft">
+    <section id="proof" class="section-soft">
   <div class="container">
     <div class="section-head">
       <div>
@@ -1022,6 +1100,11 @@
 </section>
 
     <section id="contact" class="section-soft">
+      <div class="bg-video-wrap" aria-hidden="true">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="video2.mp4" type="video/mp4" />
+        </video>
+      </div>
       <div class="container">
         <div class="section-head">
           <div>
@@ -1119,35 +1202,6 @@
       v.addEventListener('error', () => v.remove());
       const t = setTimeout(() => { if (v.readyState === 0) v.remove(); }, 1200);
       v.addEventListener('loadedmetadata', () => clearTimeout(t));
-    })();
-    (function () {
-      const wrap = document.querySelector('#capabilities .bg-video-wrap');
-      if (!wrap) return;
-      const v = wrap.querySelector('video');
-      const source = v ? v.querySelector('source[data-src]') : null;
-      const fallback = wrap.querySelector('.bg-fallback');
-      if (!v || !source) return;
-      const loadVideo = () => {
-        if (source.src) return;
-        source.src = source.dataset.src;
-        v.load();
-        v.play().catch(() => {});
-      };
-      const onPlaying = () => {
-        if (fallback) fallback.style.opacity = '0';
-      };
-      v.addEventListener('playing', onPlaying, { once: true });
-      if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries) => {
-          if (entries.some((e) => e.isIntersecting)) {
-            loadVideo();
-            io.disconnect();
-          }
-        }, { rootMargin: '200px 0px' });
-        io.observe(wrap);
-      } else {
-        loadVideo();
-      }
     })();
   </script>
 </body>
