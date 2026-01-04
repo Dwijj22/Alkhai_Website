@@ -21,8 +21,8 @@
 
   <style>
     :root{
-      --bg0:#070A1F;
-      --bg1:#0A1230;
+      --bg0:#121B3A;
+      --bg1:#1A2A54;
       --panel: rgba(255,255,255,0.04);
       --line: rgba(255,255,255,0.10);
       --text:#FFFFFF;
@@ -31,8 +31,8 @@
       --glass: rgba(255,255,255,0.06);
       --glass-strong: rgba(255,255,255,0.09);
       --glow: rgba(91,140,255,0.18);
-      --deep-overlay-1: rgba(5,7,26,0.52);
-      --deep-overlay-2: rgba(5,7,26,0.62);
+      --deep-overlay-1: rgba(5,7,26,0.28);
+      --deep-overlay-2: rgba(5,7,26,0.36);
 
       /* Signal colors */
       --electric:#5B8CFF;
@@ -54,10 +54,10 @@
       font-family: "Sora", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--text);
       background:
-        repeating-linear-gradient(0deg, rgba(255,255,255,0.016) 0px, rgba(255,255,255,0.016) 1px, transparent 1px, transparent 7px),
-        repeating-linear-gradient(90deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 6px),
-        radial-gradient(1200px 800px at 10% 10%, rgba(91,140,255,0.18), transparent 60%),
-        radial-gradient(900px 700px at 75% 0%, rgba(61,220,151,0.14), transparent 60%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 7px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.014) 0px, rgba(255,255,255,0.014) 1px, transparent 1px, transparent 6px),
+        radial-gradient(1200px 800px at 10% 10%, rgba(91,140,255,0.22), transparent 60%),
+        radial-gradient(900px 700px at 75% 0%, rgba(61,220,151,0.18), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       letter-spacing: 0.01em;
       -webkit-font-smoothing: antialiased;
@@ -132,6 +132,7 @@
       background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
       color: var(--text);
       font-weight: 600;
+      cursor: pointer;
       transition: transform 170ms ease, border-color 170ms ease, background 170ms ease, box-shadow 170ms ease;
       box-shadow: 0 14px 36px rgba(0,0,0,0.18);
     }
@@ -153,6 +154,15 @@
     }
     .btn.primary:hover{ border-color: rgba(91,140,255,0.65); box-shadow: 0 32px 110px rgba(91,140,255,0.16); }
     .btn.ghost{ box-shadow:none; }
+    .book-cta{
+      border-color: rgba(255,176,32,0.45);
+      background: linear-gradient(135deg, rgba(255,176,32,0.25), rgba(255,255,255,0.03));
+      box-shadow: 0 18px 50px rgba(255,176,32,0.14);
+    }
+    .book-cta:hover{
+      border-color: rgba(255,176,32,0.7);
+      box-shadow: 0 24px 70px rgba(255,176,32,0.18);
+    }
 
     section{ position: relative; padding: 86px 0; border-top: none; }
     section::before{
@@ -260,7 +270,7 @@
     .hero::after{
       content:"";
       position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(5,7,26,0.62), rgba(5,7,26,0.62));
+      background: linear-gradient(180deg, rgba(5,7,26,0.44), rgba(5,7,26,0.44));
       pointer-events:none;
       z-index: 0;
     }
@@ -287,14 +297,14 @@
     }
     .hero .bg-video-wrap video{
       width:100%; height:100%; object-fit: cover;
-      opacity: 0.25;
+      opacity: 0.18;
       filter: saturate(0.95) contrast(1.05);
       transform: scale(1.03);
     }
     .hero .bg-video-wrap::after{
       content:"";
       position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(5,7,26,0.45), rgba(5,7,26,0.60));
+      background: linear-gradient(180deg, rgba(5,7,26,0.32), rgba(5,7,26,0.40));
     }
     .hero .container{ position: relative; z-index: 1; }
     .hero-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 34px; align-items: center; }
@@ -536,6 +546,18 @@
     textarea{ min-height: 110px; resize: vertical; }
 
     .fine{ color: rgba(199,206,217,0.78); font-size: 0.92rem; line-height: 1.6; }
+    .form-success{
+      display:none;
+      margin-top: 10px;
+      color: #fff;
+      font-size: 0.98rem;
+      font-weight: 700;
+      background: rgba(61,220,151,0.14);
+      border: 1px solid rgba(61,220,151,0.45);
+      padding: 10px 12px;
+      border-radius: 12px;
+    }
+    .form-success.show{ display:block; }
 
     footer{
       border-top: 1px solid rgba(255,255,255,0.08);
@@ -558,6 +580,16 @@
       font-size: 0.92rem;
     }
     .link-chip:hover{ background: rgba(255,255,255,0.05); color: #fff; }
+    .link-chip.book-cta{
+      border-color: rgba(255,176,32,0.55);
+      background: linear-gradient(135deg, rgba(255,176,32,0.26), rgba(255,255,255,0.04));
+      color: #fff;
+      box-shadow: 0 14px 36px rgba(255,176,32,0.18);
+    }
+    .link-chip.book-cta:hover{
+      border-color: rgba(255,176,32,0.8);
+      box-shadow: 0 18px 48px rgba(255,176,32,0.22);
+    }
 
 
     .blob{
@@ -612,14 +644,14 @@
     }
     #capabilities .bg-video-wrap video{
       width:100%; height:100%; object-fit: cover;
-      opacity: 0.28;
+      opacity: 0.20;
       filter: saturate(0.95) contrast(1.05);
       transform: scale(1.03);
     }
     #capabilities .bg-video-wrap::after{
       content:"";
       position:absolute; inset:0;
-      background: linear-gradient(180deg, var(--deep-overlay-1), var(--deep-overlay-2));
+      background: linear-gradient(180deg, rgba(5,7,26,0.22), rgba(5,7,26,0.30));
     }
     #capabilities .container{ position: relative; z-index: 1; }
 
@@ -656,14 +688,14 @@
     }
     #scan .bg-video-wrap video{
       width:100%; height:100%; object-fit: cover;
-      opacity: 0.24;
+      opacity: 0.18;
       filter: saturate(0.95) contrast(1.05);
       transform: scale(1.03);
     }
     #scan .bg-video-wrap::after{
       content:"";
       position:absolute; inset:0;
-      background: linear-gradient(180deg, var(--deep-overlay-1), var(--deep-overlay-2));
+      background: linear-gradient(180deg, rgba(5,7,26,0.22), rgba(5,7,26,0.30));
     }
     #scan .container{ position: relative; z-index: 1; }
 
@@ -678,14 +710,14 @@
     }
     #platform .bg-video-wrap video{
       width:100%; height:100%; object-fit: cover;
-      opacity: 0.24;
+      opacity: 0.18;
       filter: saturate(0.95) contrast(1.05);
       transform: scale(1.03);
     }
     #platform .bg-video-wrap::after{
       content:"";
       position:absolute; inset:0;
-      background: linear-gradient(180deg, var(--deep-overlay-1), var(--deep-overlay-2));
+      background: linear-gradient(180deg, rgba(5,7,26,0.22), rgba(5,7,26,0.30));
     }
     #platform .container{ position: relative; z-index: 1; }
 
@@ -785,9 +817,9 @@
 
           <div class="hero-actions">
             <a class="btn primary" href="#contact"><i class="fa-solid fa-arrow-right"></i> Request an ITSM Bottleneck Scan</a>
-            <a class="btn" href="#deliverables"><i class="fa-solid fa-chart-line"></i> View Diagnostic visuals</a>
-            <a class="btn ghost" href="https://calendly.com/YOUR_LINK" target="_blank" rel="noreferrer noopener">
-            <i class="fa-regular fa-calendar"></i> Book a 15-min intro
+            <a class="btn" href="#platform"><i class="fa-solid fa-chart-line"></i> View Diagnostic visuals</a>
+            <a class="btn ghost book-cta" href="https://calendly.com/dwijravikumar/alkhai-initial-meeting" target="_blank" rel="noreferrer noopener">
+            <i class="fa-regular fa-calendar"></i> Book a 30-minute intro
           </a>
           </div>
 
@@ -1251,29 +1283,35 @@
 
               <p class="fine" style="margin-top: 14px;">
                 Prefer email? <a class="link-chip" href="mailto:contact@alkhai.com?subject=Request%20a%20Bottleneck%20Scan">contact@alkhai.com</a>
+                <a class="link-chip book-cta" href="https://calendly.com/dwijravikumar/alkhai-initial-meeting" target="_blank" rel="noreferrer noopener">
+                  <i class="fa-regular fa-calendar"></i> Book a 30-minute intro
+                </a>
               </p>
             </div>
           </div>
           
-          <form class="form" action="mailto:contact@alkhai.com" method="post" enctype="text/plain">
+          <form class="form" id="contact-form" action="https://formspree.io/f/mzdzkroe" method="POST">
             <label>
               Name
-              <input name="name" autocomplete="name" placeholder="Your name" required />
+              <input name="name" type="text" autocomplete="name" placeholder="Name" required />
             </label>
             <label>
               Work email
-              <input name="email" type="email" autocomplete="email" placeholder="you@company.com" required />
+              <input name="email" type="email" autocomplete="email" placeholder="Work Email" required />
             </label>
             <label>
-              IT service process you want to improve
-              <input name="process" placeholder="Major Incidents/ Escalations / Approvals / SLA breaches...." required />
+              Company
+              <input name="company" type="text" autocomplete="organization" placeholder="Company" />
             </label>
             <label>
-              What's the bottleneck symptom?
-              <textarea name="message" placeholder="Delays, rework, handoffs, SLA breaches..."></textarea>
+              What problem are you trying to solve?
+              <textarea name="message" placeholder="What problem are you trying to solve?"></textarea>
             </label>
-            <button class="btn primary" type="submit"><i class="fa-solid fa-paper-plane"></i> Request ITSM Scan</button>
-            <div class="fine">No platform changes. No data copied outside your environment. NDA available.</div>
+            <button class="btn primary" type="submit"><i class="fa-solid fa-paper-plane"></i> Request a Scan</button>
+            <div class="fine">No platform changes. Read-only access. NDA available.</div>
+            <div class="form-success" id="form-success" role="status" aria-live="polite">
+              Thank you, we will contact you soon.
+            </div>
           </form>
         </div>
       </div>
@@ -1282,12 +1320,14 @@
     <footer>
       <div class="container footer-inner">
         <div class="footer-left">
-          <img src="ALKHAI.png" alt="ALKHAI logo">
+          <a href="#top" aria-label="Back to top">
+            <img src="Alkhai_Footer.png" alt="ALKHAI logo">
+          </a>
           <span>© 2025 ALKHAI — ITSM Process Intelligence</span>
         </div>
         <div class="footer-links">
           <a class="link-chip" href="mailto:contact@alkhai.com">contact@alkhai.com</a>
-          <a class="link-chip" href="https://www.linkedin.com" target="_blank" rel="noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+          <a class="link-chip" href="https://www.linkedin.com/company/alkhai/" target="_blank" rel="noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
           <a class="link-chip" href="#">Privacy</a>
           <a class="link-chip" href="#">Terms</a>
           <span class="link-chip" aria-label="copyright">© 2025 ALKHAI</span>
@@ -1320,6 +1360,26 @@
       } else {
         items.forEach((el) => el.classList.add('in-view'));
       }
+    })();
+    (function () {
+      const form = document.querySelector('#contact-form');
+      const success = document.querySelector('#form-success');
+      if (!form || !success) return;
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error('Form submit failed');
+            form.reset();
+            success.classList.add('show');
+          })
+          .catch(() => {});
+      });
     })();
   </script>
 </body>
