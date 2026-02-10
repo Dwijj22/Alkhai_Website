@@ -94,7 +94,7 @@
         r: rnd(3.0, 5.0),
         heat: 0,               // visual emphasis
         breachPulse: 0,        // flashes on SLA breaches
-        label: (stage === 0 ? 'Ticket' : stage === 2 ? 'Task' : stage === 3 ? 'Approval' : stage === 4 ? 'Closure' : 'Step') + ' ' + (i + 1)
+        label: (stage === 0 ? 'Order' : stage === 2 ? 'Task' : stage === 3 ? 'Approval' : stage === 4 ? 'Closure' : 'Step') + ' ' + (i + 1)
       });
     }
 
