@@ -59,6 +59,20 @@
     window.addEventListener('resize', resize, { passive: true });
     resize();
 
+    // ---- Scroll jank fix ----
+    // While the user is scrolling, browsers prioritize smooth scrolling.
+    // Your canvas loop is CPU-heavy, so we temporarily reduce its frame rate during scroll.
+    let isScrolling = false;
+    let scrollTimer = 0;
+    let lastPaint = 0;
+
+    window.addEventListener('scroll', () => {
+      isScrolling = true;
+      if (scrollTimer) clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => { isScrolling = false; }, 140);
+    }, { passive: true });
+
+
     // HUD elements (optional)
     const kpiRework = document.getElementById('kpiRework');
     const kpiSla = document.getElementById('kpiSla');
@@ -183,6 +197,30 @@
     }
     setKpis();
 
+
+                  (function painDock() {
+      const dock = document.getElementById('painDock');
+      const handle = document.getElementById('painHandle');
+    
+      if (!dock || !handle) return;
+    
+      let locked = false;
+    
+      handle.addEventListener('click', () => {
+        locked = !locked;
+        dock.classList.toggle('open', locked);
+      });
+    
+      dock.addEventListener('mouseenter', () => {
+        if (!locked) dock.classList.add('open');
+      });
+    
+      dock.addEventListener('mouseleave', () => {
+        if (!locked) dock.classList.remove('open');
+      });
+    })();
+
+
     // Rendering helpers
     function drawGlowCircle(x, y, r, color, alpha) {
       ctx.save();
@@ -246,6 +284,19 @@
     function frame(now) {
       const dt = Math.min(0.033, (now - last) / 1000);
       last = now;
+
+
+      // If the user is actively scrolling, PAUSE the canvas work entirely.
+      // This is the most reliable way to keep scrolling smooth on mid-range laptops.
+      if (isScrolling) {
+        // Keep the RAF loop alive, but do zero simulation/drawing work.
+        last = now;
+        requestAnimationFrame(frame);
+        return;
+      }
+
+      // Not scrolling: run at full speed (~60 FPS).
+      lastPaint = now;
 
       // Reduced motion: draw a single frame occasionally
       if (prefersReduced) {
@@ -393,29 +444,6 @@
         ctx.fillText(text, bx, by);
         ctx.restore();
       }
-
-              (function painDock() {
-  const dock = document.getElementById('painDock');
-  const handle = document.getElementById('painHandle');
-
-  if (!dock || !handle) return;
-
-  let locked = false;
-
-  handle.addEventListener('click', () => {
-    locked = !locked;
-    dock.classList.toggle('open', locked);
-  });
-
-  dock.addEventListener('mouseenter', () => {
-    if (!locked) dock.classList.add('open');
-  });
-
-  dock.addEventListener('mouseleave', () => {
-    if (!locked) dock.classList.remove('open');
-  });
-})();
-
       requestAnimationFrame(frame);
     }
 
