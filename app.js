@@ -44,18 +44,27 @@
     const ctx = canvas?.getContext('2d');
     if (!canvas || !ctx) return;
 
-    let w = 0, h = 0, dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+    let w = 0, h = 0;
 
-    function resize() {
-      dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      w = window.innerWidth;
-      h = window.innerHeight;
-      canvas.width = Math.floor(w * dpr);
-      canvas.height = Math.floor(h * dpr);
-      canvas.style.width = w + 'px';
-      canvas.style.height = h + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
+// Render quality scale (0.6–0.85). Lower = faster + smoother scroll on weak machines.
+let QUALITY = 0.72;
+
+function resize() {
+  w = window.innerWidth;
+  h = window.innerHeight;
+
+  // Cap internal canvas resolution to reduce GPU/CPU fill cost (biggest win).
+  // We deliberately do NOT render at full devicePixelRatio.
+  const scale = QUALITY;
+
+  canvas.width = Math.floor(w * scale);
+  canvas.height = Math.floor(h * scale);
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+
+  // Map drawing coordinates to CSS pixels.
+  ctx.setTransform(scale, 0, 0, scale, 0, 0);
+}
     window.addEventListener('resize', resize, { passive: true });
     resize();
 
@@ -87,7 +96,7 @@
       { name: 'Resolve', x: 0.88 },
     ];
 
-    const NODE_COUNT = 56;
+    const NODE_COUNT = 32;
     const nodes = [];
     const edges = [];
     const tokens = [];
@@ -156,7 +165,7 @@
     addCycle(2, 4, 3);
 
     // Tokens (moving flow indicators)
-    const TOKEN_COUNT = 90;
+    const TOKEN_COUNT = 35;
     for (let i = 0; i < TOKEN_COUNT; i++) {
       const e = edges[Math.floor(Math.random() * edges.length)];
       tokens.push({
