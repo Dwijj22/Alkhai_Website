@@ -1,0 +1,66 @@
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  background: var(--panel-bg);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.comparison-table th {
+  padding: 24px;
+  text-align: left;
+  font-size: 1.125rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.comparison-table th.th-traditional {
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-secondary);
+}
+
+.comparison-table th.th-alkhai {
+  background: rgba(200, 169, 110, 0.1);
+  color: var(--gold);
+}
+
+.comparison-table td {
+  padding: 20px 24px;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-light);
+  width: 50%;
+  vertical-align: top;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.check-mark {
+  color: var(--gold);
+  font-weight: 900;
+  margin-right: 8px;
+}
+
+.x-mark {
+  color: var(--text-muted);
+  font-weight: 900;
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+  .comparison-table td, .comparison-table th {
+    padding: 16px;
+    font-size: 0.95rem;
+  }
+}

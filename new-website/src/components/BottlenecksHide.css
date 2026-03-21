@@ -1,0 +1,88 @@
+.bottlenecks-hide-section {
+  background: var(--navy-deep);
+  position: relative;
+}
+
+.bottlenecks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.bottleneck-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-ambient-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(200, 169, 110, 0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.bottleneck-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(200, 169, 110, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.bottleneck-card:hover .card-ambient-glow {
+  opacity: 1;
+}
+
+.card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(200, 169, 110, 0.1);
+  color: var(--gold);
+  display: grid;
+  place-items: center;
+  margin-bottom: 24px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(200, 169, 110, 0.2);
+}
+
+.bottleneck-card:hover .card-icon {
+  transform: scale(1.1);
+  background: rgba(200, 169, 110, 0.2);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+.card-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex: 1;
+}
+
+@media (max-width: 1024px) {
+  .bottlenecks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .bottlenecks-grid {
+    grid-template-columns: 1fr;
+  }
+}
