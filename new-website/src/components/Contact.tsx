@@ -1,31 +1,119 @@
-import React from 'react';
-import { Button } from './Button';
+'use client';
+import { useState, FormEvent } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBuilding, faSitemap, faBullseye, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 
-export const Contact = () => {
+export function Contact() {
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      await fetch('https://formspree.io/f/mzdzkroe', {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+      setSuccess(true);
+      form.reset();
+    } catch {
+      // handle error silently
+    }
+  };
+
   return (
-    <section id="contact" style={{ padding: '120px 0' }}>
+    <section id="contact" className="section-soft reveal">
       <div className="container">
-        <div className="panel reveal" style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01))', textAlign: 'center', padding: '80px 40px', borderColor: 'var(--border-strong)' }}>
-          <h2 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', marginBottom: '24px' }}>Book a 30-minute intro call — at no charge.</h2>
-          <p style={{ maxWidth: '640px', margin: '0 auto 40px', fontSize: '1.25rem' }}>
-            Tell us about the workflow you want to improve and where work is stalling. We’ll outline how a bottleneck scan can help.
-          </p>
-          
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '32px' }}>
-            <a href="https://calendly.com/dwijravikumar/alkhai-initial-meeting" target="_blank" rel="noreferrer noopener">
-              <Button variant="primary" style={{ padding: '20px 40px', fontSize: '1.125rem' }}>
-                Schedule Intro Call
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              </Button>
-            </a>
+        <div className="section-head">
+          <div>
+            <div className="eyebrow"><span className="dot"></span> Contact Us</div>
+            <h2>Request a Bottleneck Scan.</h2>
+          </div>
+          <div>
+            <p className="fine" style={{ maxWidth: '60ch' }}>
+              Tell us about the workflow you want to improve and where work is stalling.
+              We&apos;ll respond with a scoped bottleneck scan and a data-focused plan.
+            </p>
+            <p className="fine" style={{ maxWidth: '60ch' }}>
+              We do not sell software licenses or long-term transformation programs.
+            </p>
+            <p className="fine" style={{ maxWidth: '60ch' }}>
+              No platform changes. Read-only access. NDA available. No long-term engagement required.
+              If we don&apos;t find actionable constraints, you don&apos;t proceed.
+            </p>
+          </div>
+        </div>
+
+        <div className="cta-box">
+          <div>
+            <div className="panel soft" style={{ border: 'none', background: 'transparent', padding: 0 }}>
+              <h3 style={{ marginBottom: 12 }}>What to include</h3>
+              <div className="steps" style={{ marginTop: 0 }}>
+                <div className="step">
+                  <div className="badge"><FontAwesomeIcon icon={faBuilding} /></div>
+                  <div>
+                    <b>Company + team</b>
+                    <p className="fine">Size, the systems involved (CRM/ERP/ticketing/spreadsheets), and stakeholders (Ops, Finance, Sales Ops, Support leadership).</p>
+                  </div>
+                </div>
+                <div className="step">
+                  <div className="badge"><FontAwesomeIcon icon={faSitemap} /></div>
+                  <div>
+                    <b>Process scope</b>
+                    <p className="fine">Order-to-cash, support, onboarding, fulfillment, procurement, or a specific workflow.</p>
+                  </div>
+                </div>
+                <div className="step">
+                  <div className="badge"><FontAwesomeIcon icon={faBullseye} /></div>
+                  <div>
+                    <b>Outcome target</b>
+                    <p className="fine">Cycle time reduction, throughput increase, cost savings, fewer missed deadlines, or faster cash collection.</p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="fine" style={{ marginTop: 14 }}>
+                Prefer email? <a className="link-chip" href="mailto:contact@alkhai.com?subject=Request%20a%20Bottleneck%20Scan">contact@alkhai.com</a>{' '}
+                <a className="link-chip book-cta" href="https://calendly.com/dwijravikumar/alkhai-initial-meeting" target="_blank" rel="noreferrer noopener">
+                  <FontAwesomeIcon icon={faCalendar} /> Book a 30-minute intro
+                </a>
+              </p>
+            </div>
           </div>
 
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', maxWidth: '500px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <strong>If we don't find actionable constraints, you don't proceed.</strong>
-          </p>
+          <form className="form" onSubmit={handleSubmit}>
+            <label>
+              Name
+              <input name="name" type="text" autoComplete="name" placeholder="Name" required />
+            </label>
+            <label>
+              Work email
+              <input name="email" type="email" autoComplete="email" placeholder="Work Email" required />
+            </label>
+            <label>
+              Company
+              <input name="company" type="text" autoComplete="organization" placeholder="Company" />
+            </label>
+            <label>
+              What problem are you trying to solve?
+              <textarea name="message" placeholder="What problem are you trying to solve?" />
+            </label>
+            <button className="btn primary" type="submit">
+              <FontAwesomeIcon icon={faPaperPlane} /> Request a Scan
+            </button>
+            <div className="fine">No platform changes. Read-only access. NDA available.</div>
+            {success && (
+              <div className="form-success show" role="status" aria-live="polite">
+                Thank you, we will contact you soon.
+              </div>
+            )}
+          </form>
         </div>
       </div>
     </section>
   );
-};
+}

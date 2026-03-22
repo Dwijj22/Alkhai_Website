@@ -1,24 +1,32 @@
-import Link from 'next/link';
+import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBolt } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlay } from '@fortawesome/free-regular-svg-icons';
 
-export const Navbar = () => {
+export function Navbar() {
   return (
     <header className="nav">
       <div className="container nav-inner">
-        <Link href="/" className="brand" aria-label="ALKHAI Home">
-          {/* Using text logo initially, can replace with image later */}
-          <span className="brand-text">ALKHAI</span>
-        </Link>
+        <a className="brand" href="#top" aria-label="ALKHAI Home">
+          <Image src="/AlkhaiLogoBlue.jpeg" alt="ALKHAI logo" width={132} height={40} style={{ opacity: 0.95 }} priority />
+        </a>
+
         <nav className="nav-links" aria-label="Primary">
-          <Link href="#capabilities">Capabilities</Link>
-          <Link href="#platform">Deliverables</Link>
-          <Link href="#scan">Bottleneck Scan</Link>
-          <Link href="#differentiation">Why ALKHAI</Link>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#platform">Deliverables</a>
+          <a href="#scan">Bottleneck Scan</a>
+          <a href="#differentiation">Why ALKHAI</a>
         </nav>
+
         <div className="nav-cta">
-          <a href="#how-it-works" className="btn btn-ghost">How it works</a>
-          <a href="#contact" className="btn btn-primary">Request a Scan</a>
+          <a className="btn ghost" href="#scan">
+            <FontAwesomeIcon icon={faCirclePlay} /> How it works
+          </a>
+          <a className="btn primary" href="#contact">
+            <FontAwesomeIcon icon={faBolt} /> Request a Scan
+          </a>
         </div>
       </div>
     </header>
   );
-};
+}

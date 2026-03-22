@@ -1,97 +1,70 @@
-import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRoute, faFireFlameCurved, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 
-export const Deliverables = () => {
+export function Deliverables() {
   return (
-    <section id="platform" className="section-soft">
+    <section id="platform" className="section-soft reveal">
       <div className="container">
-        <div className="reveal" style={{ marginBottom: '64px' }}>
-          <div className="eyebrow">
-            <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--gold)', display: 'inline-block', marginRight: '12px' }}></span>
-            Deliverables
+        <div className="section-head">
+          <div>
+            <div className="eyebrow"><span className="dot"></span> Deliverables</div>
+            <h2>Stop the &ldquo;Invisible Leaks&rdquo;</h2>
           </div>
-          <h2>Stop the "Invisible Leaks"</h2>
-          <p style={{ maxWidth: '640px', marginTop: '16px' }}>
-            These visuals communicate what your team gets: clarity, ranked constraints, and a single "start here" path.
-            They represent the diagnostic outputs we deliver - not a software license or black-box tool.
-          </p>
-        </div>
-
-        <div className="panel reveal" style={{ overflow: 'hidden', padding: 0 }}>
-          <div className="grid-2" style={{ gap: 0 }}>
-            
-            <div style={{ padding: '48px', borderRight: '1px solid var(--border-light)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
-                <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(200, 169, 110, 0.1)', display: 'grid', placeItems: 'center', color: 'var(--gold)' }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                </div>
-                <h3 style={{ fontSize: '1.75rem', margin: 0 }}>Constraint heatmap</h3>
-              </div>
-              <p style={{ fontSize: '1.05rem', marginBottom: '32px' }}>
-                Rank constraints by business impact, not opinion. Focus teams on the few fixes that actually increase throughput.
-              </p>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '12px', border: '1px solid var(--border-light)' }}>
-                  <strong style={{ display: 'block', fontSize: '1.2rem', marginBottom: '4px', color: 'var(--text-primary)' }}>Cost leakage</strong>
-                  <span style={{ color: 'var(--text-secondary)' }}><b style={{ color: 'var(--gold)' }}>$</b> quantified per constraint</span>
-                </div>
-                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '12px', border: '1px solid var(--border-light)' }}>
-                  <strong style={{ display: 'block', fontSize: '1.2rem', marginBottom: '4px', color: 'var(--text-primary)' }}>Time leakage</strong>
-                  <span style={{ color: 'var(--text-secondary)' }}>wait time, rework, handoff delay</span>
-                </div>
-                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '12px', border: '1px solid var(--border-light)' }}>
-                  <strong style={{ display: 'block', fontSize: '1.2rem', marginBottom: '4px', color: 'var(--text-primary)' }}>Fix difficulty</strong>
-                  <span style={{ color: 'var(--text-secondary)' }}>policy → process → automation</span>
-                </div>
-              </div>
-
-              <div style={{ marginTop: '32px', display: 'inline-block', padding: '8px 16px', borderRadius: '999px', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-light)', fontSize: '0.875rem' }}>
-                Tool-agnostic: integrates with your stack
-              </div>
-            </div>
-
-            {/* Visual Right Side */}
-            <div style={{ padding: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.1)' }}>
-               {/* Apple-style premium visual representation of a heatmap */}
-               <div style={{ width: '100%', maxWidth: '400px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  
-                  <div style={{ background: 'var(--panel-bg)', border: '1px solid var(--border-strong)', padding: '20px', borderRadius: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
-                    <div>
-                      <div style={{ fontWeight: 600, fontSize: '1.1rem' }}>Approval Queue</div>
-                      <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginTop: '4px' }}>4.6 days avg wait</div>
-                    </div>
-                    <div style={{ background: 'rgba(192, 57, 43, 0.2)', color: '#ff8a8a', padding: '6px 12px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 700, border: '1px solid var(--red)' }}>
-                      High Impact
-                    </div>
-                  </div>
-
-                  <div style={{ background: 'var(--panel-bg)', border: '1px solid var(--border-light)', padding: '20px', borderRadius: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
-                      <div style={{ fontWeight: 600, fontSize: '1.1rem' }}>Rework Loop</div>
-                      <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginTop: '4px' }}>18% of cases</div>
-                    </div>
-                    <div style={{ background: 'rgba(200, 169, 110, 0.1)', color: 'var(--gold)', padding: '6px 12px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 700 }}>
-                      Costly
-                    </div>
-                  </div>
-
-                  <div style={{ background: 'var(--panel-bg)', border: '1px solid var(--border-light)', padding: '20px', borderRadius: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
-                      <div style={{ fontWeight: 600, fontSize: '1.1rem' }}>Handoff Delay</div>
-                      <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginTop: '4px' }}>1.9 days median</div>
-                    </div>
-                    <div style={{ background: 'rgba(255, 255, 255, 0.05)', color: 'var(--text-secondary)', padding: '6px 12px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 700 }}>
-                      Fixable
-                    </div>
-                  </div>
-
-               </div>
-            </div>
-
+          <div>
+            <p className="fine" style={{ marginTop: 6 }}>
+              These visuals represent the diagnostic outputs we deliver - not a software license or black-box tool.
+            </p>
+            <p className="fine" style={{ maxWidth: '52ch' }}>
+              These visuals communicate what your team gets: clarity, ranked constraints, and a single &ldquo;start here&rdquo; path.
+            </p>
           </div>
         </div>
 
+        <div className="grid-2">
+          <div className="panel">
+            <div className="title"><span className="icon"><FontAwesomeIcon icon={faRoute} /></span><b>Process map + variants</b></div>
+            <p>See how work actually flows across teams and systems—with variance, rework loops, and wait states highlighted.</p>
+
+            <div className="spark" style={{ height: 160, marginTop: 12 }} aria-hidden="true">
+              <svg viewBox="0 0 700 220" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="g2" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stopColor="rgba(91,140,255,0.85)" />
+                    <stop offset="1" stopColor="rgba(255,176,32,0.90)" />
+                  </linearGradient>
+                </defs>
+                <circle cx="90" cy="120" r="14" fill="rgba(61,220,151,0.95)" />
+                <circle cx="260" cy="90" r="14" fill="rgba(91,140,255,0.95)" />
+                <circle cx="260" cy="150" r="14" fill="rgba(91,140,255,0.70)" />
+                <circle cx="450" cy="120" r="14" fill="rgba(255,176,32,0.95)" />
+                <circle cx="620" cy="120" r="14" fill="rgba(61,220,151,0.95)" />
+                <path d="M104,120 C160,120 200,96 246,90" stroke="url(#g2)" strokeWidth="5" fill="none" />
+                <path d="M104,120 C160,120 200,144 246,150" stroke="rgba(91,140,255,0.35)" strokeWidth="4" fill="none" strokeDasharray="8 8" />
+                <path d="M274,90 C330,88 380,115 436,120" stroke="url(#g2)" strokeWidth="5" fill="none" />
+                <path d="M274,150 C330,152 380,125 436,120" stroke="rgba(255,176,32,0.35)" strokeWidth="4" fill="none" strokeDasharray="8 8" />
+                <path d="M464,120 C510,120 560,120 606,120" stroke="rgba(61,220,151,0.85)" strokeWidth="5" fill="none" />
+                <text x="438" y="72" fill="rgba(255,255,255,0.85)" fontSize="22" fontWeight="700">Bottleneck</text>
+                <line x1="450" y1="78" x2="450" y2="106" stroke="rgba(255,176,32,0.85)" strokeWidth="3" />
+              </svg>
+            </div>
+          </div>
+
+          <div className="panel">
+            <div className="title"><span className="icon"><FontAwesomeIcon icon={faFireFlameCurved} /></span><b>Constraint heatmap</b></div>
+            <p>Rank constraints by business impact, not opinion. Focus teams on the few fixes that actually increase throughput.</p>
+
+            <div style={{ marginTop: 12, display: 'grid', gap: 10 }}>
+              <div className="kpi"><strong style={{ fontSize: '1.15rem' }}>Cost leakage</strong><span><b style={{ color: '#fff' }}>$</b> quantified per constraint</span></div>
+              <div className="kpi"><strong style={{ fontSize: '1.15rem' }}>Time leakage</strong><span>wait time, rework, handoff delay</span></div>
+              <div className="kpi"><strong style={{ fontSize: '1.15rem' }}>Fix difficulty</strong><span>policy → process → automation</span></div>
+            </div>
+
+            <div className="pill" style={{ marginTop: 12 }}>
+              <FontAwesomeIcon icon={faLayerGroup} /> Tool-agnostic: integrates with your stack
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
-};
+}
